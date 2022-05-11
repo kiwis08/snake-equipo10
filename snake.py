@@ -16,7 +16,7 @@ from freegames import square, vector
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
-
+aim_food = vector(0, 0)
 
 def change(x, y):
     """Change snake direction."""
@@ -57,6 +57,16 @@ def move():
     update()
     ontimer(move, 100)
 
+def move_food():
+    """Move food."""
+    food.move(aim_food)
+    aim_food.x = randrange(-10, 10, 10)
+    aim_food.y = randrange(-10, 10, 10)
+    if not inside(food):
+        food.x = randrange(-15, 15) * 10
+        food.y = randrange(-15, 15) * 10
+    ontimer(move_food, 500)
+
 
 setup(420, 420, 370, 0)
 hideturtle()
@@ -67,4 +77,5 @@ onkey(lambda: change(-10, 0), 'Left')
 onkey(lambda: change(0, 10), 'Up')
 onkey(lambda: change(0, -10), 'Down')
 move()
+move_food()
 done()
