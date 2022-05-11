@@ -16,6 +16,7 @@ from freegames import square, vector
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
+aim_food = vector(0, 0) # Como mismo para snake crear nuevo vector para aimfood
 
 def change(x, y):
     """Change snake direction."""
@@ -56,7 +57,7 @@ def move():
     update()
     ontimer(move, 100)
 
-def move_food():
+def move_food(): #Aqui estasmos creaando otro function llama move_food donde usamos library randrange y llamando aim para x y y.
     """Move food."""
     food.move(aim_food)
     aim_food.x = randrange(-10, 10, 10)
